@@ -39,7 +39,7 @@ class TestWorkingWithTheApplication:
     @pytest.mark.parametrize('locator_source', [TestLocators.TAB_BUNS, TestLocators.TAB_SAUCES])
     def test_transition_to_stuffings(self, driver, locator_source):
         driver.get(data.url_main_page)
-        WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((By.XPATH, './/h1[text() = "Соберите бургер"]'))) #ждем отображения надписи "Соберите бургер"
+        WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.INSCRIPTION_ASSEMBLE_THE_BURGER))) #ждем отображения надписи "Соберите бургер"
         if driver.find_element(*locator_source).text != 'Булки':
             driver.find_element(*locator_source).click() # найти и нажать исходную вкладку меню
         driver.find_element(*TestLocators.TAB_STUFFINGS).click() # найти и нажать вкладку "Начинки"
@@ -49,7 +49,7 @@ class TestWorkingWithTheApplication:
     @pytest.mark.parametrize('locator_source', [TestLocators.TAB_STUFFINGS, TestLocators.TAB_SAUCES])
     def test_transition_to_buns(self, driver, locator_source):
         driver.get(data.url_main_page)
-        WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((By.XPATH, './/h1[text() = "Соберите бургер"]'))) #ждем отображения надписи "Соберите бургер"
+        WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located((TestLocators.INSCRIPTION_ASSEMBLE_THE_BURGER))) #ждем отображения надписи "Соберите бургер"
         driver.find_element(*locator_source).click() # найти и нажать исходную вкладку меню
         driver.find_element(*TestLocators.TAB_BUNS).click() # найти и нажать вкладку "Начинки"
         assert driver.find_element(*TestLocators.MENU_BUNS) # проверяем наличие надписи меню "Начинки"
