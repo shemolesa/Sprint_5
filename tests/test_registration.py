@@ -14,8 +14,9 @@ class TestRegistration:
        driver.find_element(*TestLocators.EMAIL_USER).send_keys(generated_login) # ищем и вводим логин
        driver.find_element(*TestLocators.PASSWORD_USER).send_keys('1234567') # ищем и вводим пароль
        driver.find_element(*TestLocators.BUTTON_REGISTER).click() # ищем и нажимаем кнопку "Зарегистрироваться"
-       driver.implicitly_wait(3)
-       assert driver.find_element(*TestLocators.INSCRIPTION_ENTRANCE) # проверяем наличие надпии "Вход"
+       WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located(
+          (TestLocators.INSCRIPTION_ENTRANCE)))  # ждем, пока не отобразится кнопка "Оформить заказ"
+       assert driver.find_element(*TestLocators.INSCRIPTION_ENTRANCE) # проверяем наличие надписи "Вход"
 
 
 # проверка обработки ошибки для некорректного пароля (1-5 символов)

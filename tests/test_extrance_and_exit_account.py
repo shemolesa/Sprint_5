@@ -14,7 +14,8 @@ class TestExtranceAccount:
         driver.find_element(*TestLocators.EMAIL_USER).send_keys(data.my_login) # ищем и вводим логин
         driver.find_element(*TestLocators.PASSWORD_USER).send_keys(data.my_password) # ищем и вводим пароль
         driver.find_element(*TestLocators.BUTTON_ENTRANCE).click()  # ищем и нажимаем кнопку "Войти"
-        driver.implicitly_wait(3)
+        WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located(
+            (TestLocators.BUTTON_ENTRANCE_IN_ACCOUNT)))  # ждем, пока не отобразится кнопка "Оформить заказ"
         assert driver.find_element(*TestLocators.BUTTON_ENTRANCE_IN_ACCOUNT).text == 'Оформить заказ' # проверка кнопки "Оформить заказ" на главной странице
 
 #проверка входа по ссылке со страницы регистрации/восстановления пароля
@@ -30,7 +31,8 @@ class TestExtranceAccount:
         driver.find_element(*TestLocators.EMAIL_USER).send_keys(data.my_login) # ищем и вводим логин
         driver.find_element(*TestLocators.PASSWORD_USER).send_keys(data.my_password) # ищем и вводим пароль
         driver.find_element(*TestLocators.BUTTON_ENTRANCE).click() # ищем и нажимаем кнопку "Войти"
-        driver.implicitly_wait(3)
+        WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located(
+            (TestLocators.BUTTON_ENTRANCE_IN_ACCOUNT)))  # ждем, пока не отобразится кнопка "Оформить заказ"
         assert driver.find_element(*TestLocators.BUTTON_ENTRANCE_IN_ACCOUNT).text == 'Оформить заказ' # проверка кнопки "Оформить заказ" на главной странице
 
 # проверка выхода из профиля
