@@ -16,10 +16,10 @@ def driver():
     yield driver
     driver.quit()
 
-@pytest.fixture() # генерация логина пользователя
-def generated_login():
-    generated_login = 'NameFamili9'+str(random.randint(100,999))+'@yandex.ru'
-    return generated_login
+# @pytest.fixture() # генерация логина пользователя
+# def generated_login():
+#     generated_login = 'NameFamili9'+str(random.randint(100,999))+'@yandex.ru'
+#     return generated_login
 
 
 @pytest.fixture() # авторизация пользователя с главной страницы

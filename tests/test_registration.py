@@ -2,16 +2,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from locators import TestLocators
+from helpers import generated_login
 
 class TestRegistration:
 
 # проверка успешной регистрации
-    def test_successful_registration(self, driver, generated_login):
+    def test_successful_registration(self, driver):
        driver.find_element(*TestLocators.BUTTON_ENTRANCE_IN_ACCOUNT).click() # найти и нажать кнопку "Войти в аккаунт"
        WebDriverWait(driver, 3).until(expected_conditions.element_to_be_clickable((By.XPATH, '.// a[contains( @ href, "/register")]'))) #ждем, пока не будет кликабельна ссылка "Зарегистрироваться"
        driver.find_element(*TestLocators.LINK_REGISTER).click() # ищем и нажимаем ссылку "Зарегистрироваться"
-       driver.find_element(*TestLocators.NAME_USER).send_keys(generated_login) # ищем и вводим имя
-       driver.find_element(*TestLocators.EMAIL_USER).send_keys(generated_login) # ищем и вводим логин
+       login = generated_login() # генерируем имя/логин  нового пользователя
+       driver.find_element(*TestLocators.NAME_USER).send_keys(login) # ищем и вводим имя
+       driver.find_element(*TestLocators.EMAIL_USER).send_keys(login) # ищем и вводим логин
        driver.find_element(*TestLocators.PASSWORD_USER).send_keys('1234567') # ищем и вводим пароль
        driver.find_element(*TestLocators.BUTTON_REGISTER).click() # ищем и нажимаем кнопку "Зарегистрироваться"
        WebDriverWait(driver, 3).until(expected_conditions.visibility_of_element_located(
