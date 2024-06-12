@@ -27,3 +27,5 @@ class TestLocators:
     MENU_SAUCES = By.XPATH, '.// span[text() = "Соусы"]' # меню "Соусы"
     MENU_BUNS = By.XPATH, '.// span[text() = "Булки"]'  # меню "Булки"
     MENU_STUFFINGS = By.XPATH, '.// span[text() = "Начинки"]'  # меню "Начинки"
+    NAVIGATION_ACCOUNT = By.XPATH, '.// *[contains( @class , "Account_nav__Lgali")]' # раздел навигации в личном кабинете
+    TAB_CURRENT = By.XPATH, '.// *[contains( @class , "tab_tab_type_current")]' # текущий раздел меню
